@@ -48,6 +48,7 @@ class GameController(QObject):
     def _on_creature_selected(self, creature_id: str):
         self._game_state.reset()
         self._game_state.player_creature_id = creature_id
+        self._game_state.build_opponent_queue()
         self._start_next_battle()
 
     def _start_next_battle(self):
