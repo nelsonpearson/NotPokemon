@@ -52,7 +52,7 @@ class BattleView(QWidget):
         arena_layout = QVBoxLayout(arena)
         arena_layout.setContentsMargins(16, 8, 16, 8)
 
-        # Opponent info row (top)
+        # Opponent info row (top) — right-aligned to sit above the opponent sprite
         opp_info = QHBoxLayout()
         self._opponent_name_label = QLabel("Opponent")
         self._opponent_name_label.setStyleSheet(
@@ -61,10 +61,10 @@ class BattleView(QWidget):
         self._opponent_type_badge = TypeBadge()
         self._opponent_hp_bar = HpBar()
         self._opponent_hp_bar.setFixedWidth(180)
-        opp_info.addWidget(self._opponent_name_label)
-        opp_info.addWidget(self._opponent_type_badge)
         opp_info.addStretch()
         opp_info.addWidget(self._opponent_hp_bar)
+        opp_info.addWidget(self._opponent_type_badge)
+        opp_info.addWidget(self._opponent_name_label)
         arena_layout.addLayout(opp_info)
 
         # Sprites row
@@ -81,7 +81,7 @@ class BattleView(QWidget):
         sprites_layout.addWidget(self._opponent_sprite, alignment=Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignRight)
         arena_layout.addLayout(sprites_layout)
 
-        # Player info row (bottom)
+        # Player info row (bottom) — left-aligned to sit below the player sprite
         player_info = QHBoxLayout()
         self._player_name_label = QLabel("Player")
         self._player_name_label.setStyleSheet(
@@ -90,10 +90,10 @@ class BattleView(QWidget):
         self._player_type_badge = TypeBadge()
         self._player_hp_bar = HpBar()
         self._player_hp_bar.setFixedWidth(180)
+        player_info.addWidget(self._player_name_label)
+        player_info.addWidget(self._player_type_badge)
         player_info.addWidget(self._player_hp_bar)
         player_info.addStretch()
-        player_info.addWidget(self._player_type_badge)
-        player_info.addWidget(self._player_name_label)
         arena_layout.addLayout(player_info)
 
         main_layout.addWidget(arena, stretch=1)
